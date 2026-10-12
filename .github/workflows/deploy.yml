@@ -26,7 +26,6 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run setup # word lists are not committed; download them here
       - run: npm test
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3

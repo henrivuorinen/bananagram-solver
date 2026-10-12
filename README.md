@@ -13,7 +13,6 @@ Everything runs on your device, so it works with no internet once it has loaded.
 
 ```bash
 npm install
-npm run setup     # one-time: downloads the word lists into public/
 npm run dev       # http://localhost:5173
 ```
 
@@ -70,8 +69,8 @@ git status          # check what will be committed
 git commit -m "Bananagram solver"
 ```
 
-Not committed (see `.gitignore`): `node_modules/`, `dist/`, and the downloaded word lists in `public/dict/`.
-The workflow re-downloads the word lists on GitHub.
+Not committed (see `.gitignore`): `node_modules/` and `dist/`.
+The word lists in `public/dict/` *are* committed, because the Kotus server blocks downloads from GitHub's build machines.
 
 > `tests/photos/` holds an original photo, which is only used for manual testing.
 > If you'd rather not publish it, run `git rm -r --cached tests/photos` and add `tests/photos` to `.gitignore` before committing.
@@ -105,7 +104,7 @@ When git asks for a password, use a [personal access token](https://github.com/s
 When it's done, the app is at `https://<your-username>.github.io/bananagram-solver/`.
 
 > On a free GitHub account, Pages only works for **public** repositories. If you want a private repo, use Netlify or Cloudflare Pages instead.
-> Both can connect to the GitHub repo. Use build command `npm ci && npm run setup && npm run build` and output directory `dist`.
+> Both can connect to the GitHub repo. Use build command `npm ci && npm run build` and output directory `dist`.
 
 ### Updating afterwards
 
@@ -173,7 +172,7 @@ Templates are generated from the open-licensed Arimo font by `scripts/make-templ
 | `src/ocr/ocr.ts` | Browser glue: loads the photo and runs the steps above. |
 | `src/solver.worker.ts` | Runs the solver off the main thread. |
 | `src/main.ts`, `index.html`, `src/style.css` | UI. |
-| `scripts/fetch-assets.mjs` | Downloads the dictionaries (`npm run setup`). |
+| `scripts/fetch-assets.mjs` | Re-downloads the dictionaries into `public/dict/` (`npm run setup`; only needed to update them — delete the old files first). |
 | `scripts/make-templates.py` | Regenerates the letter templates (only needed to change the font). |
 | `tests/fixtures/` | Test images: generated tiles, plus a real photo (three downscaled versions) with an answer key in `tests/tiles.test.ts`. |
 
