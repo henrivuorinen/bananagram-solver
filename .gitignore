@@ -1,0 +1,7 @@
+node_modules
+dist
+dev-dist
+# Downloaded by `npm run setup`
+public/dict
+scripts/.cache
+.DS_Store

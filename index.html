@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5c518" />
+    <meta name="description" content="Offline Bananagrams solver: snap your tiles, get a grid." />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <title>Bananagram Solver</title>
+  </head>
+  <body>
+    <header class="top">
+      <h1><span class="logo" aria-hidden="true">B</span> Bananagram Solver</h1>
+      <label class="lang">
+        <span class="sr-only">Dictionary</span>
+        <select id="lang">
+          <option value="en">English</option>
+          <option value="fi">Suomi</option>
+        </select>
+      </label>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>1. Your tiles</h2>
+        <div class="row">
+          <label class="btn secondary file">
+            Take or choose photo
+            <input id="photo" type="file" accept="image/*" capture="environment" hidden />
+          </label>
+        </div>
+        <div id="ocr-status" class="muted" role="status"></div>
+        <div id="preview" class="preview" hidden></div>
+
+        <form id="type-form" class="row">
+          <input id="type-input" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false"
+            placeholder="Or type letters, e.g. ABEIRST" aria-label="Type letters" />
+          <button class="btn secondary" type="submit">Add</button>
+        </form>
+
+        <div class="tray-head">
+          <span id="count" class="muted">0 tiles</span>
+          <button id="clear" class="link" type="button">Clear all</button>
+        </div>
+        <div id="tray" class="tray" aria-label="Your tiles (tap a tile to change or remove it)"></div>
+        <div id="tile-editor" class="editor" hidden></div>
+        <p class="hint muted">Tap a tile to change or remove it. Orange tiles were hard to read, so check them.</p>
+
+        <button id="solve" class="btn primary wide" type="button" disabled>Solve</button>
+      </section>
+
+      <section id="result-card" class="card" hidden>
+        <h2>2. Your grid</h2>
+        <div id="message" class="message" role="status"></div>
+        <div class="grid-wrap"><div id="grid" class="grid"></div></div>
+        <details id="words-box">
+          <summary>Words in the grid</summary>
+          <ul id="words" class="words"></ul>
+        </details>
+      </section>
+
+      <section id="peel-card" class="card" hidden>
+        <h2>3. Peel or dump</h2>
+        <form id="peel-form" class="row">
+          <input id="peel-input" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false"
+            placeholder="New letter(s)" aria-label="New letters" />
+          <button class="btn primary" type="submit">Add &amp; update</button>
+        </form>
+        <p class="hint muted">After "Peel!", type the tile you drew. After a dump, type the 3 tiles you took.</p>
+        <div id="dump-box" class="dump" hidden></div>
+      </section>
+    </main>
+
+    <footer class="muted">
+      <span id="dict-info">Loading dictionary…</span> · <span id="offline">Loading…</span>
+      · Dictionaries: ENABLE (public domain), Kotus Nykysuomen sanalista (CC BY 4.0)
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "bananagram-solver",
+  "version": "1.0.0",
+  "description": "Offline Bananagrams solver (PWA)",
+  "scripts": {
+    "setup": "node scripts/fetch-assets.mjs",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/pngjs": "^6.0.5",
+    "pngjs": "^7.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.7",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^4.1.11"
+  },
+  "private": true
+}
